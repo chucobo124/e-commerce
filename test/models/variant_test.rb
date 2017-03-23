@@ -19,7 +19,6 @@ class VariantTest < ActiveSupport::TestCase
   end
 
   test 'listing' do
-    byebug
     variant = variants(:variant_default).tap do |variant|
       variant.update(count_on_hand: 10)
     end
