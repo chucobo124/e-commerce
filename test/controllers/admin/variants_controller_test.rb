@@ -6,8 +6,8 @@ class Admin::VariantsControllerTest < ActionDispatch::IntegrationTest
     sign_in users(:one)
     @product = products(:product_one)
     @example_variant = {
-      sku: Faker::Commerce.product_name,
-      count_on_hand: Faker::Lorem.paragraph,
+      sku: Faker::Code.asin,
+      count_on_hand: 10,
       visible: true,
       is_default: true
     }
@@ -38,7 +38,7 @@ class Admin::VariantsControllerTest < ActionDispatch::IntegrationTest
   private
 
   def _check_variant_attr(variant)
-    expect_variant = Variant.find_by_name(variant[:name])
+    expect_variant = Variant.find_by_sku(variant[:sku])
     assert_equal variant[:sku], expect_variant.sku,
                  'should create a variant which got sku'
     assert_equal variant[:count_on_hand], expect_variant.count_on_hand,
@@ -47,7 +47,7 @@ class Admin::VariantsControllerTest < ActionDispatch::IntegrationTest
                  'should create a variant which got visible'
     assert_equal variant[:is_default], expect_variant.is_default,
                  'should create a variant which got is_default'
-    assert_equal variant[:product_id], expect_variant.product_id,
+    assert_equal @product.id, expect_variant.product.id,
                  'should create a variant which got product_id'
   end
 end
