@@ -23,7 +23,7 @@
               <td><%= product.discount_price%></td>
               <td><%= product.created_at.strftime("%b-%d-%Y")%></td>
               <td><%= product.updated_at.strftime("%b-%d-%Y")%></td>
-              <td><%= button_to "Edit", edit_admin_product_path(product.id), class: 'btn btn-outline-primary'%></td>
+              <td><%= button_to "Edit", edit_admin_product_path(product.id), method: 'get',class: 'btn btn-outline-primary'%></td>
             </tr>
           <% end %>
         </tbody>
