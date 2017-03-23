@@ -18,20 +18,15 @@ class Admin::VariantsControllerTest < ActionDispatch::IntegrationTest
   end
   test 'create' do
     post admin_product_variants_url(product_id: @product.id),
-      params: {
-        variant: @example_variant
-      }
+         params: { variant: @example_variant }
     _check_variant_attr(@example_variant)
     assert_redirected_to admin_product_variants_url
   end
   test 'update' do
     variant = variants(:variant_listed_state)
     @product.variants << variant
-    put admin_product_variant_url(id: variant.id,
-      product_id: @product.id),
-      params: {
-        variant: @example_variant
-      }
+    put admin_product_variant_url(id: variant.id, product_id: @product.id),
+        params: { variant: @example_variant }
     _check_variant_attr(@example_variant)
     assert_redirected_to admin_product_variants_url
   end
