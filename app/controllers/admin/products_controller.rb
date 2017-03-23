@@ -24,7 +24,6 @@ class Admin::ProductsController < Admin::ApplicationController
   private
 
   def _person_params
-    params[:product][:price] = params[:product][:price].to_f
     params.require(:product).permit(:name, :description, :price, :discount_price)
   end
 end

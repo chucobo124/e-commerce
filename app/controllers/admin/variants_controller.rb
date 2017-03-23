@@ -20,7 +20,6 @@ class Admin::VariantsController < Admin::ApplicationController
   end
 
   def _variant_params
-    params[:variant][:count_on_hand] = params[:variant][:count_on_hand].to_i
     params.require(:variant).permit(:sku, :count_on_hand, :visible, :is_default)
   end
 end

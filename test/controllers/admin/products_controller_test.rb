@@ -7,8 +7,8 @@ class AdminProductsControllerTest < ActionDispatch::IntegrationTest
     @example_product = {
       name: Faker::Commerce.product_name,
       description: Faker::Lorem.paragraph,
-      price: Faker::Commerce.price,
-      discount_price: Faker::Commerce.price
+      price: Faker::Commerce.price.to_d,
+      discount_price: Faker::Commerce.price.to_d
     }
   end
   test 'index' do
