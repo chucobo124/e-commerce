@@ -1,0 +1,40 @@
+<!--
+  Select Prodcut
+  Search Bar
+  This is Product Page
+-->
+<div class = 'container'>
+  <div class = 'row'>
+    <%= render 'nav_bar'%>
+  </div>
+  <div class = 'row'>
+    <div class = 'col-md-9'>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Discount Price</th>
+            <th>Create at</th>
+            <th>Update at</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @product.each do |product| %>
+            <tr>
+              <td><%= product.name%></td>
+              <td><%= product.price%></td>
+              <td><%= product.discount_price%></td>
+              <td><%= product.created_at.strftime("%b-%d-%Y")%></td>
+              <td><%= product.updated_at.strftime("%b-%d-%Y")%></td>
+              <td><%= button_to "Edit", edit_admin_product_path(product.id), class: 'btn btn-outline-primary'%></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class = 'col-md-3'>
+    </div>
+  </div>
+</div>

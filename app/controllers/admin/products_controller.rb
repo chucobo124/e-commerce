@@ -1,10 +1,14 @@
-class Admin::ProductsController < AdminApplicationController
+class Admin::ProductsController < Admin::ApplicationController
   def index
     @product = Product.all
   end
   def create
     Product.create(_person_params)
     redirect_to admin_products_path
+  end
+
+  def new
+    @product= Product.new
   end
 
   def update

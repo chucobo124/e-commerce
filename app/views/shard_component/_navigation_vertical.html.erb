@@ -1,0 +1,12 @@
+<nav class= 'admin_nav sidebar'>
+  <ul class="nav nav-pills flex-column">
+    <li class="nav-item"><a class= 'nav-link' href= '#'>Icon</a></li>
+    <li class="nav-item"><a class= 'nav-link' href= '#'>Dashboard</a></li>
+    <li class="nav-item"><%= link_to('Products', admin_products_path, class: 'nav-link') %></li>
+    <li class="nav-item"><a class= 'nav-link' href= '#'>Example</a></li>
+    <li class="nav-item"><a class= 'nav-link' href= '#'>Example</a></li>
+    <li class="nav-item"><a class= 'nav-link' href= '#'>Example</a></li>
+    <li class="nav-item"><a class= 'nav-link' href= '#'>Settings</a></li>
+    <li class="nav-item"><%= link_to('Logout', destroy_user_session_path, :method => :delete, class: 'nav-link') %></li>
+  </ul>
+</nav>

@@ -1,1 +1,7 @@
- @import 'bootstrap';
+@import 'bootstrap';
+@import 'nav_bar/nav_bar';
+@import 'product/nav_bar';
+
+.container {
+  width: 100%;
+}
