@@ -1,0 +1,14 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+variant_default:
+  sku: <%= Faker::Code.asin %>
+  count_on_hand: 0
+  state: ''
+  visible: false
+  is_default: false
+variant_listed_state:
+  sku: <%= Faker::Code.asin %>
+  count_on_hand: 0
+  state: 'listed'
+  visible: false
+  is_default: false
