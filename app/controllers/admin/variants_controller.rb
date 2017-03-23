@@ -1,14 +1,24 @@
 class Admin::VariantsController < Admin::ApplicationController
+  before_action :_product
   def index
   end
 
   def create
-    product = Product.find params[:product_id]
-    product.variants.create(_variant_params)
+    _product.variants.create _variant_params
+    redirect_to admin_product_variants_url
+  end
+
+  def update
+    variant = _product.variants.find params[:id]
+    variant.update _variant_params
     redirect_to admin_product_variants_url
   end
 
   private
+
+  def _product
+    Product.find params[:product_id]
+  end
 
   def _variant_params
     params[:variant][:count_on_hand] = params[:variant][:count_on_hand].to_i

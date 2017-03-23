@@ -8,7 +8,7 @@ variant_default:
   is_default: false
 variant_listed_state:
   sku: <%= Faker::Code.asin %>
-  count_on_hand: 0
+  count_on_hand: 5
   state: 'listed'
   visible: false
   is_default: false

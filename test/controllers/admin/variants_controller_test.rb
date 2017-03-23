@@ -25,7 +25,8 @@ class Admin::VariantsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to admin_product_variants_url
   end
   test 'update' do
-    variant = variants(:variant_default)
+    variant = variants(:variant_listed_state)
+    @product.variants << variant
     put admin_product_variant_url(id: variant.id,
       product_id: @product.id),
       params: {
