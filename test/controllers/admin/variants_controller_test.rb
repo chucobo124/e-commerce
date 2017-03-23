@@ -4,55 +4,50 @@ class Admin::VariantsControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
   setup do
     sign_in users(:one)
-    @example_product = {
-      name: Faker::Commerce.product_name,
-      description: Faker::Lorem.paragraph,
-      price: Faker::Commerce.price,
-      discount_price: Faker::Commerce.price
+    @product = products(:product_one)
+    @example_variant = {
+      sku: Faker::Commerce.product_name,
+      count_on_hand: Faker::Lorem.paragraph,
+      visible: true,
+      is_default: true
     }
   end
   test 'index' do
-    get admin_variants_url
+    get admin_product_variants_url(product_id: @product.id)
     assert_response :success, 'should be successful'
   end
   test 'create' do
-    post admin_variants_url,
-         params: {
-           product: {
-             name: @example_product[:name],
-             description: @example_product[:description],
-             price: @example_product[:price],
-             discount_price: @example_product[:discount_price]
-           }
-         }
-    _check_product_attr(@example_product)
-    assert_redirected_to admin_variants_url
+    post admin_product_variants_url(product_id: @product.id),
+      params: {
+        variant: @example_variant
+      }
+    _check_variant_attr(@example_variant)
+    assert_redirected_to admin_product_variants_url
   end
   test 'update' do
-    product = products(:product_one)
-    put admin_variant_url(id: product.id), params: {
-      product: {
-        name: @example_product[:name],
-        description: @example_product[:description],
-        price: @example_product[:price],
-        discount_price: @example_product[:discount_price]
+    variant = products(:product_one)
+    put admin_product_variant_url(id: variant.id,
+      product_id: @product.id),
+      params: {
+        variant: @example_variant
       }
-    }
-    _check_product_attr(@example_product)
-    assert_redirected_to admin_variants_url
+    _check_variant_attr(@example_variant)
+    assert_redirected_to admin_product_variants_url
   end
 
   private
 
-  def _check_product_attr(variant)
-    expect_product = Product.find_by_name(variant[:name])
-    assert_equal variant[:name], expect_product.name,
-                 'should create a variant which got name'
-    assert_equal variant[:description], expect_product.description,
-                 'should create a variant which got description'
-    assert_equal variant[:price], expect_product.price,
-                 'should create a variant which got price'
-    assert_equal variant[:discount_price], expect_product.discount_price,
-                 'should create a variant which got discount_price'
+  def _check_variant_attr(variant)
+    expect_variant = Product.find_by_name(variant[:name])
+    assert_equal variant[:sku], expect_variant.sku,
+                 'should create a variant which got sku'
+    assert_equal variant[:count_on_hand], expect_variant.count_on_hand,
+                 'should create a variant which got count_on_hand'
+    assert_equal variant[:visible], expect_variant.visible,
+                 'should create a variant which got visible'
+    assert_equal variant[:is_default], expect_variant.is_default,
+                 'should create a variant which got is_default'
+    assert_equal variant[:product_id], expect_variant.product_id,
+                 'should create a variant which got product_id'
   end
 end

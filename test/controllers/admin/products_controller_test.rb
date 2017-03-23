@@ -16,28 +16,13 @@ class AdminProductsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success, 'should be successful'
   end
   test 'create' do
-    post admin_products_url,
-         params: {
-           product: {
-             name: @example_product[:name],
-             description: @example_product[:description],
-             price: @example_product[:price],
-             discount_price: @example_product[:discount_price]
-           }
-         }
+    post admin_products_url, params: { product: @example_product }
     _check_product_attr(@example_product)
     assert_redirected_to admin_products_path
   end
   test 'update' do
     product = products(:product_one)
-    put admin_product_url(id: product.id), params: {
-      product: {
-        name: @example_product[:name],
-        description: @example_product[:description],
-        price: @example_product[:price],
-        discount_price: @example_product[:discount_price]
-      }
-    }
+    put admin_product_url(id: product.id), params: { product: @example_product }
     _check_product_attr(@example_product)
     assert_redirected_to admin_products_path
   end
