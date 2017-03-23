@@ -1,0 +1,46 @@
+<div class = 'container'>
+  <div class = 'row'>
+    <%= render 'nav_bar'%>
+  </div>
+  <div class = 'row'>
+    <div class = 'col-md-9'>
+      <%= form_for @product, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
+        <div class = 'row field'>
+          <div class = 'col-3'>
+            <%= f.label :product_name %>
+          </div>
+          <div class = 'col-9'>
+            <%= f.text_field :name %>
+          </div>
+        </div>
+        <div class = 'row field'>
+          <div class = 'col-3'>
+            <%= f.label :price %>
+          </div>
+          <div class = 'col-9'>
+            <%= f.text_field :price %>
+          </div>
+        </div>
+        <div class = 'row field'>
+          <div class = 'col-3'>
+            <%= f.label :discount_price %>
+          </div>
+          <div class = 'col-9'>
+            <%= f.text_field :discount_price%>
+          </div>
+        </div>
+        <div class = 'row field'>
+          <div class = 'col-3'>
+            <%= f.label :product_name %>
+          </div>
+          <div class = 'col-9'>
+            <%= f.text_area :description, size: "60x12" %>
+          </div>
+        </div>
+        <%= f.submit "Create" %>
+      <% end %>
+    </div>
+    <div class = 'col-md-3'>
+    </div>
+  </div>
+</div>
