@@ -1,20 +1,20 @@
 class Variant < ApplicationRecord
   include AASM
-  before_update :check_state
+  before_save :_check_state
   aasm column: :state do
     state :unlisted, initial: true
     state :listed
     state :sold_out
     state :discontinued
-    
+
     event :listing do
       transitions from: [:listed, :unlisted, :sold_out, :discontinued],
-        to: :listed, if: :is_count_on_hand?
+                  to: :listed, if: :_is_count_on_hand?
     end
 
     event :mark_as_sold do
       transitions from: [:sold_out, :listed], to: :sold_out,
-                  unless: :is_count_on_hand?
+                  unless: :_is_count_on_hand?
     end
 
     event :discontinue do
@@ -22,15 +22,23 @@ class Variant < ApplicationRecord
     end
   end
 
+  # It's an belongs to function but there is an error when add the callback.
+  # Need to fix rails afterwards.
+  #
+  # @return [Object] product object
+  def product
+    Product.find product_id
+  end
+
   private
 
-  def is_count_on_hand?
+  def _is_count_on_hand?
     count_on_hand > 0
   end
 
-  def check_state
-    return unless !discontinued?
-    if is_count_on_hand?
+  def _check_state
+    return if discontinued?
+    if _is_count_on_hand?
       !listed? ? listing : return
     else
       !sold_out? ? mark_as_sold : return
