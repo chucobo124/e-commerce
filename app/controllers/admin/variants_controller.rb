@@ -9,8 +9,7 @@ class Admin::VariantsController < Admin::ApplicationController
   end
 
   def update
-    variant = _product.variants.find params[:id]
-    variant.update _variant_params
+    _product.variants.find(params[:id]).update(_variant_params)
     redirect_to admin_product_variants_url
   end
 
