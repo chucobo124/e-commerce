@@ -25,7 +25,7 @@ class Admin::VariantsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to admin_product_variants_url
   end
   test 'update' do
-    variant = products(:product_one)
+    variant = variants(:variant_default)
     put admin_product_variant_url(id: variant.id,
       product_id: @product.id),
       params: {
@@ -38,7 +38,7 @@ class Admin::VariantsControllerTest < ActionDispatch::IntegrationTest
   private
 
   def _check_variant_attr(variant)
-    expect_variant = Product.find_by_name(variant[:name])
+    expect_variant = Variant.find_by_name(variant[:name])
     assert_equal variant[:sku], expect_variant.sku,
                  'should create a variant which got sku'
     assert_equal variant[:count_on_hand], expect_variant.count_on_hand,
