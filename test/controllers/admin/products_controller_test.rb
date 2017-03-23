@@ -38,6 +38,8 @@ class AdminProductsControllerTest < ActionDispatch::IntegrationTest
         discount_price: @example_product[:discount_price]
       }
     }
+    _check_product_attr(@example_product)
+    assert_redirected_to admin_products_path
   end
 
   private
