@@ -18,7 +18,7 @@
       <%next if variant.product.blank?%>
       <tr>
         <td><%= variant.id%></td>
-        <td><%= variant.product.id%></td>
+        <td><%= variant.product.first.id%></td>
         <td><%= variant.sku%></td>
         <td><%= variant.name%></td>
         <td><%= variant.count_on_hand%></td>
@@ -27,8 +27,8 @@
         <td><%= variant.is_default%></td>
         <td><%= variant.created_at.strftime("%b-%d-%Y")%></td>
         <td><%= variant.updated_at.strftime("%b-%d-%Y")%></td>
-        <td><%= button_to "Edit", edit_admin_product_variant_path(id: variant.id, product_id: variant.product.id), method: 'get',class: 'btn btn-outline-primary'%></td>
-        <td><%= button_to "Destroy", admin_product_variant_path(id: variant.id, product_id: variant.product.id), method: 'delete',class: 'btn btn-outline-danger'%></td>
+        <td><%= button_to "Edit", edit_admin_product_variant_path(id: variant.id, product_id: variant.product.first.id), method: 'get',class: 'btn btn-outline-primary'%></td>
+        <td><%= button_to "Destroy", admin_product_variant_path(id: variant.id, product_id: variant.product.first.id), method: 'delete',class: 'btn btn-outline-danger'%></td>
       </tr>
     <% end %>
   </tbody>
