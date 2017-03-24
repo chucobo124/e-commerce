@@ -14,6 +14,7 @@ class Admin::ProductsController < Admin::ApplicationController
 
   def edit
     @product = Product.find params[:id]
+    @variants = Product.find(params[:id]).variants
   end
 
   def update
