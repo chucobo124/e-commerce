@@ -1,0 +1,66 @@
+<% path = @variant.id.blank? ? {action: "create"} : admin_product_variant_path(id: @variant.id) %>
+<%= form_for @variant, url: path, html: {class: "nifty_form"} do |f| %>
+  <div class = 'row field'>
+    <div class = 'col-3'>
+      <%= f.label :sku %>
+    </div>
+    <div class = 'col-9'>
+      <%= f.text_field :sku %>
+    </div>
+  </div>
+  <div class = 'row field'>
+    <div class = 'col-3'>
+      <%= f.label :name %>
+    </div>
+    <div class = 'col-9'>
+      <%= f.text_field :name %>
+    </div>
+  </div>
+  <div class = 'row field'>
+    <div class = 'col-3'>
+      <%= f.label :count_on_hand %>
+    </div>
+    <div class = 'col-9'>
+      <%= f.text_field :count_on_hand %>
+    </div>
+  </div>
+  <div class = 'row field'>
+    <div class = 'col-3'>
+      <%= f.label :state %>
+    </div>
+    <div class = 'col-9'>
+      <%= f.text_field :state%>
+    </div>
+  </div>
+  <div class = 'row field'>
+    <div class = 'col-3'>
+      <%= f.label :visible %>
+    </div>
+    <div class = 'col-9'>
+      <%= f.label :true %>
+      <%= f.radio_button :visible, true %>
+      <%= f.label :false %>
+      <%= f.radio_button :visible, false %>
+    </div>
+  </div>
+  <div class = 'row field'>
+    <div class = 'col-3'>
+      <%= f.label :is_default %>
+    </div>
+    <div class = 'col-9'>
+      <%= f.label :true %>
+      <%= f.radio_button :is_default, true %>
+      <%= f.label :false %>
+      <%= f.radio_button :is_default, false %>
+    </div>
+  </div>
+  <div class = 'row field'>
+    <div class = 'col-3'>
+      <%= f.label :product_Id %>
+    </div>
+    <div class = 'col-9'>
+      <%= f.text_field :product_id %>
+    </div>
+  </div>
+  <%= f.submit %>
+<% end %>

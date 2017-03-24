@@ -1,7 +1,8 @@
 class CreateVariants < ActiveRecord::Migration[5.0]
   def change
     create_table :variants do |t|
-      t.string :sku, null: false
+      t.string :name
+      t.string :sku, null: false, :unique => true
       t.integer :count_on_hand, default: 0
       t.string :state
       t.boolean :visible, default: false

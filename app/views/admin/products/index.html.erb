@@ -3,7 +3,7 @@
     <%= render 'nav_bar'%>
   </div>
   <div class = 'row'>
-    <div class = 'col-md-9'>
+    <div>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -24,12 +24,11 @@
               <td><%= product.created_at.strftime("%b-%d-%Y")%></td>
               <td><%= product.updated_at.strftime("%b-%d-%Y")%></td>
               <td><%= button_to "Edit", edit_admin_product_path(product.id), method: 'get',class: 'btn btn-outline-primary'%></td>
+              <td><%= button_to "Create Variant", new_admin_product_variant_path(product_id: product.id), method: 'get',class: 'btn btn-outline-success'%></td>
             </tr>
           <% end %>
         </tbody>
       </table>
-    </div>
-    <div class = 'col-md-3'>
     </div>
   </div>
 </div>
