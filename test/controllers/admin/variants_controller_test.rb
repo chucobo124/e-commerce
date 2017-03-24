@@ -13,7 +13,7 @@ class Admin::VariantsControllerTest < ActionDispatch::IntegrationTest
     }
   end
   test 'index' do
-    get admin_product_variants_url(product_id: @product.id)
+    get admin_variants_url(product_id: @product.id)
     assert_response :success, 'should be successful'
   end
   test 'create' do
