@@ -27,7 +27,7 @@ class Variant < ApplicationRecord
   #
   # @return [Object] product object
   def product
-    Product.find product_id
+    Product.where id: product_id
   end
 
   private
