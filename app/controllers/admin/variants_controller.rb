@@ -3,6 +3,10 @@ class Admin::VariantsController < Admin::ApplicationController
   def index
   end
 
+  def new
+    @variant = Product.find(params[:product_id]).variants.new
+  end
+
   def create
     _product.variants.create _variant_params
     redirect_to admin_product_variants_url
