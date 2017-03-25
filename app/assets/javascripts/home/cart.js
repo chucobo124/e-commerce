@@ -38,10 +38,10 @@ function createComponent(variant, variant_id) {
               <span>`+ variant.price +`</span>
               <span> X`+ variant.count +`</span>
           </span>
-          <span> <span>
       </span>
       <span class="item-right">
-          <button onclick='deleteItem()' data-variant-id=`+ variant_id +` class="deleteBtn btn btn-xs btn-danger pull-right" href="#">x</button>
+          <button onclick='deleteItem()' data-variant-id=`+ variant_id +
+            ` class="deleteBtn btn btn-xs btn-danger pull-right" href="#">x</button>
       </span>
     </span>
   </div>`
@@ -60,7 +60,8 @@ function renderLineItems(lineItems){
     lineItemsLayout += createComponent(lineItems[index], index);
   }
   if(Object.keys(lineItems).length === 0) {
-    $('div .cart').append(`<div class="cartItem"><h3> Wanna buy something ?</h3></div>`);
+    $('div .cart').append(
+      `<div class="cartItem"><h3> Wanna buy something ?</h3></div>`);
   }
   else {
     $('div .cart').append(lineItemsLayout);

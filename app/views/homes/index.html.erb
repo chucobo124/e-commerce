@@ -11,7 +11,9 @@
                 <p class="variantPrice lead"><%= variant.product.first.price%></p>
             </div>
           </div>
-          <%= button_tag "Add to cart", class: 'addToCart btn btn-secondary btn-lg btn-block', data: { variant_id: variant.id.to_s }%>
+          <%= button_tag "Add to cart",
+            class: 'addToCart btn btn-secondary btn-lg btn-block',
+            data: { variant_id: variant.id.to_s }%>
         </div>
       <% end %>
     </div>
