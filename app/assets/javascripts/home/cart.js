@@ -5,6 +5,7 @@ $('body').click(function(evt) {
     if($(evt.target).parents(".cart").length==0 &&
        $(evt.target).parents(".cartBtn").length==0 &&
        $(evt.target).parents(".cartItem").length==0 &&
+       !$(evt.target).hasClass('addToCart') &&
        !$(evt.target).hasClass('cartBtn') &&
        !$(evt.target).hasClass('cart')) {
 
@@ -62,12 +63,22 @@ function renderLineItems(lineItems){
   if(Object.keys(lineItems).length === 0) {
     $('div .cart').append(
       `<div class="cartItem"><h3> Wanna buy something ?</h3></div>`);
+    $('.cartBtn .glyphicons').addClass('displayNone');
   }
   else {
     $('div .cart').append(lineItemsLayout);
+    $('.cartBtn .glyphicons').removeClass('displayNone').attr(
+      "data-count", Object.keys(lineItems).length);
   }
 }
-
+//check notice display
+if(Object.keys(lineItems).length === 0) {
+  $('.cartBtn .glyphicons').addClass('displayNone');
+}
+else {
+  $('.cartBtn .glyphicons').removeClass('displayNone').attr(
+    "data-count", Object.keys(lineItems).length);
+}
 // When click add to cart button append line items
 $('.addToCart').click(function(event){
   var variant_id = $(this).attr('data-variant-id');
@@ -80,6 +91,11 @@ $('.addToCart').click(function(event){
   };
   var lineItems = addItemToLineItems(variant);
   renderLineItems(lineItems);
+  $('.cartBtn .glyphicons').addClass('shake').addClass('shake-constant');
+  setTimeout(function(){
+    $('.cartBtn .glyphicons').removeClass('shake').removeClass('shake-constant');
+  }, 200);
+  $('div .cart').css('display','block');
 });
 
 // When click cart Btn render and display line items
