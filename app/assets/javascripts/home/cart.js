@@ -1,3 +1,6 @@
+var lineItems = {};
+
+// Make Cart DropDown to close when click other element
 $('body').click(function(evt) {
     if($(evt.target).parents(".cart").length==0 &&
        $(evt.target).parents(".cartBtn").length==0 &&
@@ -8,7 +11,7 @@ $('body').click(function(evt) {
       $('.cart').hide();
     }
 });
-var lineItems = {};
+
 function addItemToLineItems(variant) {
   var variant_id = variant.id;
   if(lineItems[variant_id] === undefined){
@@ -24,6 +27,7 @@ function addItemToLineItems(variant) {
   }
   return lineItems;
 }
+
 function createComponent(variant, variant_id) {
   return `<div class="cartItem">
     <span class="item">
@@ -42,6 +46,13 @@ function createComponent(variant, variant_id) {
     </span>
   </div>`
 }
+
+function deleteItem(){
+  variant_id = $('.deleteBtn').attr('data-variant-id');
+  delete lineItems[variant_id];
+  renderLineItems(lineItems);
+}
+
 function renderLineItems(lineItems){
   $('div .cart').empty();
   var lineItemsLayout = '';
@@ -55,6 +66,8 @@ function renderLineItems(lineItems){
     $('div .cart').append(lineItemsLayout);
   }
 }
+
+// When click add to cart button append line items
 $('.addToCart').click(function(event){
   var variant_id = $(this).attr('data-variant-id');
   var containClass =  '.variant_' + String(variant_id);
@@ -68,12 +81,8 @@ $('.addToCart').click(function(event){
   renderLineItems(lineItems);
 });
 
+// When click cart Btn render and display line items
 $('.cartBtn').click(function(){
   $('div .cart').toggle('fast');
   renderLineItems(lineItems);
 });
-function deleteItem(){
-  variant_id = $('.deleteBtn').attr('data-variant-id');
-  delete lineItems[variant_id];
-  renderLineItems(lineItems);
-}
