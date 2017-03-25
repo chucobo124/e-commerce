@@ -22,12 +22,12 @@ gem 'coffee-rails', '~> 4.2'
 
 gem 'devise'
 
-gem 'bootstrap'
 
 gem 'carrierwave'
 
 gem 'aasm'
 
+gem 'kaminari'
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library

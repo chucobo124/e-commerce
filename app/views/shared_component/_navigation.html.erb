@@ -1,11 +1,37 @@
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler navbar-toggler-right"
+          type="button" data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="#">E Commerce Demo</a>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <a href="#"><span class="glyphicon glyphicon-user"></span> Sign In</a>
-    <a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a>
-    <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+  <a class="navbar-brand" href="#">Navbar</a>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    <div class="btn-group">
+      <button type="button" class="cartBtn btn btn-secondary">
+        <span class="glyphicons icon-shopping-cart"></span>
+      </button>
+      <div class="cart">
+        <!-cart block->
+      </div>
+    </div>
   </div>
 </nav>

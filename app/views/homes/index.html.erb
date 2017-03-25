@@ -1,1 +1,22 @@
-<%= render "navigation"%>
+<div id="products" class="row">
+  <% @variants.each do |variant|%>
+    <div class="item col-xs-4 col-lg-4">
+      <%= content_tag :div, class: "thumbnail variant_#{variant.id}" do -%>
+        <img style="width: 100%;"  src="http://placehold.it/400x250/000/fff" alt="" />
+        <div class="caption">
+          <h4 class="variantName group inner list-group-item-heading"><%= variant.name%></h4>
+          <p class="group inner list-group-item-text"><%= variant.product.first.description%></p>
+          <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <p class="variantPrice lead"><%= variant.product.first.price%></p>
+            </div>
+          </div>
+          <%= button_tag "Add to cart",
+            class: 'addToCart btn btn-secondary btn-lg btn-block',
+            data: { variant_id: variant.id.to_s }%>
+        </div>
+      <% end %>
+    </div>
+  <%end%>
+</div>
+<%= javascript_include_tag 'home/cart' %>

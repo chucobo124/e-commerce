@@ -1,5 +1,6 @@
 class Variant < ApplicationRecord
   include AASM
+  paginates_per 12
   before_save :_check_state
   aasm column: :state do
     state :unlisted, initial: true

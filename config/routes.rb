@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'homes#index'
+  root 'homes#index', id: 1
   devise_for :users, controllers: { sessions: 'users/sessions',
                                     passwords: 'users/passwords',
                                     registrations: 'users/registrations' }
