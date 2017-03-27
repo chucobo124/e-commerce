@@ -1,11 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  asset: MyString
-  picturable_id: 1
-  picturable_type: MyString
-
-two:
+image_default:
   asset: MyString
   picturable_id: 1
   picturable_type: MyString

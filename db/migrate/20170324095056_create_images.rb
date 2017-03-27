@@ -4,7 +4,6 @@ class CreateImages < ActiveRecord::Migration[5.0]
       t.string :asset
       t.integer :picturable_id
       t.string :picturable_type
-
       t.timestamps
     end
     add_index :images, [:picturable_id, :picturable_type]
