@@ -3,7 +3,7 @@ require 'test_helper'
 class AdminProductsControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
   setup do
-    sign_in users(:one)
+    sign_in users(:user_default)
     @example_product = {
       name: Faker::Commerce.product_name,
       description: Faker::Lorem.paragraph,

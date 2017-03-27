@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+line_item_default:
+  order: order_default
+  variant: variant_default
+  quantity: 1
+  price: 9.99
+line_item_purchased:
+  order: order_purchased
+  variant: variant_default
+  quantity: 1
+  price: 9.99
+  state: 'in_payment'
