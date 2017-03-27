@@ -7,10 +7,10 @@ class LineItem < ApplicationRecord
     state :in_payment
     state :purchased
     state :error
-    event :move_to_in_payment do
+    event :ready_to_pay do
       transitions form: [:in_cart, :error], to: :in_payment
     end
-    event :move_to_purchased do
+    event :purchase do
       transitions form: [:in_payment], to: :purchased,
         if: :check_order_is_purchased
     end
