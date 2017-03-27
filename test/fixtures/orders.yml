@@ -3,3 +3,7 @@
 order_default:
   user: user_default
   completed_at: 2017-03-27 11:19:25
+order_purchased:
+  user: user_default
+  completed_at: 2017-03-27 11:19:25
+  state: 'purchased'

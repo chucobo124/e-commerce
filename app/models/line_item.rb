@@ -11,13 +11,14 @@ class LineItem < ApplicationRecord
       transitions form: [:in_cart, :error], to: :in_payment
     end
     event :move_to_purchased do
-      transitions form: [:in_payment], to: :purchased
+      transitions form: [:in_payment], to: :purchased,
+        if: :check_order_is_purchased
     end
   end
 
   private
 
   def check_order_is_purchased
-    order.state
+    order.purchased?
   end
 end
