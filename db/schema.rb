@@ -49,8 +49,11 @@ ActiveRecord::Schema.define(version: 20170327111924) do
     t.string   "description",    default: "",    null: false
     t.decimal  "price",          default: "0.0", null: false
     t.decimal  "discount_price"
+    t.string   "imageable_type"
+    t.integer  "imageable_id"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.index ["imageable_type", "imageable_id"], name: "index_products_on_imageable_type_and_imageable_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
