@@ -21,7 +21,7 @@ class AdminProductsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to admin_products_path
   end
   test 'update' do
-    product = products(:product_one)
+    product = products(:product_default)
     put admin_product_url(id: product.id), params: { product: @example_product }
     _check_product_attr(@example_product)
     assert_redirected_to admin_products_path

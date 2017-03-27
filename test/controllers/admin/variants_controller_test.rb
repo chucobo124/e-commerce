@@ -4,7 +4,7 @@ class Admin::VariantsControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
   setup do
     sign_in users(:user_default)
-    @product = products(:product_one)
+    @product = products(:product_default)
     @example_variant = {
       sku: Faker::Code.asin,
       name: Faker::Commerce.product_name,
