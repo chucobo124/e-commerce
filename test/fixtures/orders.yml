@@ -1,0 +1,6 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+order_default:
+  user: user_default
+  state: MyString
+  completed_at: 2017-03-27 11:19:25
