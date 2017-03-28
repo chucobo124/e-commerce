@@ -2,14 +2,21 @@ require 'test_helper'
 
 class AdminProductsControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
+  include PictureHelper
   setup do
     sign_in users(:user_default)
+    uploaded_file = ActionDispatch::Http::UploadedFile.new(tempfile: create_picture)
     @example_product = {
       name: Faker::Commerce.product_name,
       description: Faker::Lorem.paragraph,
       price: Faker::Commerce.price.to_d,
-      discount_price: Faker::Commerce.price.to_d
+      discount_price: Faker::Commerce.price.to_d,
+      image: { '0' => uploaded_file }
     }
+  end
+  teardown do
+    remove_picture
+    Rails.cache.clear
   end
   test 'index' do
     get admin_products_url
