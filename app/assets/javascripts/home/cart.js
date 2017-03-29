@@ -54,6 +54,10 @@ function deleteItem(){
   renderLineItems(lineItems);
 }
 
+function purchase(){
+  
+}
+
 function renderLineItems(lineItems){
   $('div .cart').empty();
   var lineItemsLayout = '';
@@ -67,6 +71,8 @@ function renderLineItems(lineItems){
   }
   else {
     $('div .cart').append(lineItemsLayout);
+    $('div .cart').append(
+      `<button type="button" onclick=purchase class="btn btn-primary btn-lg btn-block">Purchase</button>`);
     $('.cartBtn .glyphicons').removeClass('displayNone').attr(
       "data-count", Object.keys(lineItems).length);
   }
