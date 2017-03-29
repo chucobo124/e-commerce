@@ -2,14 +2,25 @@ require 'test_helper'
 
 class AdminProductsControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
+  include PictureHelper
   setup do
+    remove_picture
     sign_in users(:user_default)
+    uploaded_file = create_picture.path
+    uploaded_file = fixture_file_upload(uploaded_file, 'image/png')
     @example_product = {
       name: Faker::Commerce.product_name,
       description: Faker::Lorem.paragraph,
       price: Faker::Commerce.price.to_d,
-      discount_price: Faker::Commerce.price.to_d
+      discount_price: Faker::Commerce.price.to_d,
+      images: { '0' => uploaded_file,
+                '1' => uploaded_file,
+                '2' => uploaded_file }
     }
+  end
+  teardown do
+    remove_picture
+    Rails.cache.clear
   end
   test 'index' do
     get admin_products_url
@@ -39,5 +50,9 @@ class AdminProductsControllerTest < ActionDispatch::IntegrationTest
                  'should create a product which got price'
     assert_equal product[:discount_price], expect_product.discount_price,
                  'should create a product which got discount_price'
+    @example_product[:images].count.times do |index|
+      assert File.exist?(expect_product.images[index - 1].asset.path),
+             'should create a product which got product image'
+    end
   end
 end
