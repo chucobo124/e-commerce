@@ -9,7 +9,6 @@ class Admin::ProductsController < Admin::ApplicationController
     images.each do |image|
       product.images.create(asset: image)
     end
-    product.save
     redirect_to admin_products_path
   end
 
