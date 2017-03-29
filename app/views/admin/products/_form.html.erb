@@ -1,5 +1,6 @@
 <% path = @product.id.blank? ? {action: "create"} : admin_product_path(@product.id) %>
-<%= form_for @product, url: path, html: {class: "nifty_form"} do |f| %>
+<%= form_for @product, url: path, html: { class: "nifty_form",
+                                  multipart: true } do |f| %>
   <div class = 'row field'>
     <div class = 'col-3'>
       <%= f.label :product_name %>
@@ -30,6 +31,14 @@
     </div>
     <div class = 'col-9'>
       <%= f.text_area :description, size: "60x12" %>
+    </div>
+  </div>
+  <div class = 'row field'>
+    <div class = 'col-3'>
+      <%= f.label :my_avatar %>
+    </div>
+    <div class = 'col-9'>
+      <%= file_field_tag :images %>
     </div>
   </div>
   <%= f.submit %>
