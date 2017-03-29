@@ -35,11 +35,23 @@
   </div>
   <div class = 'row field'>
     <div class = 'col-3'>
-      <%= f.label :my_avatar %>
+      <%= f.label :images %>
     </div>
-    <div class = 'col-9'>
-      <%= file_field_tag :images %>
-    </div>
+  </div>
+  <div class = 'row field'>
+    <%= f.fields_for :images, Image.new do |image_form|%>
+      <% 5.times do |index|%>
+        <div class = 'col-5'>
+          <%= image_form.file_field :asset, multiple: true,
+            name: "product[images][#{index}]" %>
+        </div>
+        <div class = 'col-9'>
+          <% unless @product.images[index].blank? %>
+            <%= image_tag(@product.images[index].asset.url, size: "500")%>
+          <%end%>
+        </div>
+      <%end%>
+    <%end%>
   </div>
   <%= f.submit %>
 <% end %>

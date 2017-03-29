@@ -26,10 +26,10 @@ class Admin::ProductsController < Admin::ApplicationController
     product = Product.find params[:id]
     product.update(_product_params)
     images.each_with_index do |image, index|
-      if product.images[index - 1].blank?
+      if product.images[index].blank?
         product.images.create(asset: image)
       else
-        product.images[index - 1].asset= image
+        product.images[index].asset = image
       end
     end
     redirect_to admin_products_path
@@ -40,9 +40,9 @@ class Admin::ProductsController < Admin::ApplicationController
   def _create_image_object
     images = []
     5.times do |index|
-      params.require(:product).permit(images: (index - 1).to_s).tap do |image|
+      params.require(:product).permit(images: index.to_s).tap do |image|
         next if image['images'].blank?
-        images << File.open(image['images'][(index - 1).to_s].path)
+        images << image['images'][index.to_s]
       end
     end
     images
