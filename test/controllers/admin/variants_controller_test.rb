@@ -2,15 +2,18 @@ require 'test_helper'
 
 class Admin::VariantsControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
+  include PictureHelper
   setup do
     sign_in users(:user_default)
+    image_paths = create_picture(5)
     @product = products(:product_default)
     @example_variant = {
       sku: Faker::Code.asin,
       name: Faker::Commerce.product_name,
       count_on_hand: 10,
       visible: true,
-      is_default: true
+      is_default: true,
+      images: { '0' => image_paths[0] }
     }
   end
   test 'index' do
@@ -46,7 +49,7 @@ class Admin::VariantsControllerTest < ActionDispatch::IntegrationTest
                  'should create a variant which got visible'
     assert_equal variant[:is_default], expect_variant.is_default,
                  'should create a variant which got is_default'
-    assert_equal @product.id, expect_variant.product.first.id,
+    assert_equal variant[:images]['0'], expect_variant.images[0],
                  'should create a variant which got product_id'
   end
 end

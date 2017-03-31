@@ -49,11 +49,8 @@ ActiveRecord::Schema.define(version: 20170327111924) do
     t.string   "description",    default: "",    null: false
     t.decimal  "price",          default: "0.0", null: false
     t.decimal  "discount_price"
-    t.string   "imageable_type"
-    t.integer  "imageable_id"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
-    t.index ["imageable_type", "imageable_id"], name: "index_products_on_imageable_type_and_imageable_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -77,14 +74,17 @@ ActiveRecord::Schema.define(version: 20170327111924) do
 
   create_table "variants", force: :cascade do |t|
     t.string   "name"
-    t.string   "sku",                           null: false
-    t.integer  "count_on_hand", default: 0
+    t.string   "sku",                            null: false
+    t.integer  "count_on_hand",  default: 0
     t.string   "state"
-    t.boolean  "visible",       default: false
-    t.boolean  "is_default",    default: false
+    t.boolean  "visible",        default: false
+    t.boolean  "is_default",     default: false
     t.integer  "product_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.string   "imageable_type"
+    t.integer  "imageable_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["imageable_type", "imageable_id"], name: "index_variants_on_imageable_type_and_imageable_id", using: :btree
     t.index ["product_id"], name: "index_variants_on_product_id", using: :btree
   end
 

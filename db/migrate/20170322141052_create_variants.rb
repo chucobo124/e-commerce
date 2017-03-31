@@ -8,6 +8,7 @@ class CreateVariants < ActiveRecord::Migration[5.0]
       t.boolean :visible, default: false
       t.boolean :is_default, default: false
       t.integer :product_id
+      t.references :imageable, polymorphic: true, index: true
       t.timestamps
     end
     add_index(:variants, :product_id)

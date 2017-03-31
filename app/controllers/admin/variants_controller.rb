@@ -13,12 +13,29 @@ class Admin::VariantsController < Admin::ApplicationController
   end
 
   def create
-    _product.variants.create _variant_params
+    variant = _product.variants.create _variant_params
+    _create_image_object.each_with_index do |image, index|
+      if variant.images[index].blank?
+        variant.images.create(asset: image)
+      else
+        variant.images[index].asset = image
+      end
+    end
     redirect_to edit_admin_product_url params[:product_id]
   end
 
   def update
-    _product.variants.find(params[:id]).update(_variant_params)
+    # images = _create_image_object
+    variant = _product.variants.find(params[:id])
+    variant.update(_variant_params)
+    _create_image_object(variant)
+    # images.each_with_index do |image, index|
+    #   if variant.images[index].blank?
+    #     variant.images.create(asset: image)
+    #   else
+    #     variant.images[index].asset = image
+    #   end
+    # end
     redirect_to edit_admin_product_url params[:product_id]
   end
 
@@ -28,6 +45,17 @@ class Admin::VariantsController < Admin::ApplicationController
   end
 
   private
+
+  def _create_image_object(variant)
+    images = []
+    5.times do |index|
+      params.require(:variant).permit(images: index.to_s).tap do |image|
+        next if image['images'].blank?
+        images << Image.create(asset: image['images'][index.to_s])
+      end
+    end
+    variant.images << images
+  end
 
   def _product
     Product.find params[:product_id]
