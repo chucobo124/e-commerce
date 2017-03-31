@@ -13,7 +13,7 @@ class Admin::VariantsControllerTest < ActionDispatch::IntegrationTest
       count_on_hand: 10,
       visible: true,
       is_default: true,
-      images: { '0' => image_paths[0] }
+      images: { '0' => fixture_file_upload(image_paths[0], 'image/png') }
     }
   end
   test 'index' do
