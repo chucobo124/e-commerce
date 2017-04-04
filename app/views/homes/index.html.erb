@@ -2,7 +2,11 @@
   <% @variants.each do |variant|%>
     <div class="item col-xs-4 col-lg-4">
       <%= content_tag :div, class: "thumbnail variant_#{variant.id}" do %>
-      <%= image_tag(variant.product[0].images[0].asset.url, size: "400x250")%>
+      <%if variant.images[0].blank?%>
+        <%= image_tag('/default/no_product.gif')%>
+      <%else%>
+        <%= image_tag(variant.images[0].asset_url)%>
+      <%end%>
         <div class="caption">
           <h4 class="variantName group inner list-group-item-heading"><%= variant.name%></h4>
           <p class="group inner list-group-item-text"><%= variant.product.first.description%></p>

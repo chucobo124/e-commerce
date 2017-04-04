@@ -49,7 +49,6 @@ class Admin::VariantsControllerTest < ActionDispatch::IntegrationTest
                  'should create a variant which got visible'
     assert_equal variant[:is_default], expect_variant.is_default,
                  'should create a variant which got is_default'
-    assert_equal variant[:images]['0'], expect_variant.images[0],
-                 'should create a variant which got product_id'
+    assert File.exist? expect_variant.images[0].asset.file.path
   end
 end

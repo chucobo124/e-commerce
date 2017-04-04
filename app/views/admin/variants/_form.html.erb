@@ -62,5 +62,20 @@
       <%= f.text_field :product_id %>
     </div>
   </div>
+  <div class = 'row field'>
+    <%= f.fields_for :images, Image.new do |image_form|%>
+      <% 5.times do |index|%>
+        <div class = 'col-5'>
+          <%= image_form.file_field :asset, multiple: true,
+            name: "variant[images][#{index}]" %>
+        </div>
+        <div class = 'col-9'>
+          <% unless @variant.images[index].blank? %>
+            <%= image_tag(@variant.images[index].asset_url)%>
+          <%end%>
+        </div>
+      <%end%>
+    <%end%>
+  </div>
   <%= f.submit %>
 <% end %>
