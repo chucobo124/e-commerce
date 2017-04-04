@@ -54,6 +54,7 @@ function deleteItem(){
   renderLineItems(lineItems);
 }
 
+
 function renderLineItems(lineItems){
   $('div .cart').empty();
   var lineItemsLayout = '';

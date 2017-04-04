@@ -5,7 +5,6 @@ class CreateProducts < ActiveRecord::Migration[5.0]
       t.string :description, null: false, default: ''
       t.decimal :price, null: false, default: 0
       t.decimal :discount_price
-      t.references :imageable, polymorphic: true, index: true
       t.timestamps
     end
   end

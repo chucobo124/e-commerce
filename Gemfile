@@ -22,9 +22,9 @@ gem 'coffee-rails', '~> 4.2'
 
 gem 'devise'
 
-
+gem "mini_magick"
 gem 'carrierwave'
-
+gem 'carrierwave-imageoptimizer'
 gem 'aasm'
 
 gem 'kaminari'
