@@ -6,6 +6,14 @@ variant_default:
   state: ''
   visible: false
   is_default: false
+<% 5.times do |index|%>
+<%= "variant_default_#{index}:"%>
+    sku: <%= Faker::Code.asin %>
+    count_on_hand: 5
+    state: 'listed'
+    visible: true
+    is_default: true
+<% end %>
 variant_listed_state:
   sku: <%= Faker::Code.asin %>
   count_on_hand: 5

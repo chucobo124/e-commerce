@@ -3,9 +3,11 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: 'users/sessions',
                                     passwords: 'users/passwords',
                                     registrations: 'users/registrations' }
+  resources :orders, only: [:create, :new, :index], on: :user
   namespace :admin do
-    resources :variants, only: :index
     root 'homes#index'
+    resources :variants, only: :index
+    resources :orders
     resources :products do
       resources :variants, except: :index
     end
