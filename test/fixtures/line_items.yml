@@ -5,6 +5,15 @@ line_item_default:
   variant: variant_default
   quantity: 1
   price: 9.99
+
+<% 5.times do |index|%>
+<%= "line_item_default_#{index}:"%>
+    order: order_default
+    variant: <%= "variant_default_#{index}"%>
+    quantity: <%= Faker::Number.number(2) %>
+    price: <%= Faker::Commerce.price %>
+<% end %>
+
 line_item_purchased:
   order: order_purchased
   variant: variant_default

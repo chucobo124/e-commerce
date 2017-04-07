@@ -2,6 +2,7 @@ class Order < ApplicationRecord
   include AASM
   belongs_to :user
   has_many :variants
+  has_many :line_items
   aasm column: :state do
     state :in_progress, initial: true
     state :ready_to_pay
