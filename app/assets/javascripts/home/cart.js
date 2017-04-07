@@ -1,4 +1,8 @@
-var lineItems = {};
+if( Object.keys(JSON.parse(getCookie('lineItems'))).length === 0){
+  var lineItems = {};
+}else {
+  var lineItems = JSON.parse(getCookie('lineItems'));
+}
 
 // Make Cart DropDown to close when click other element
 $('body').click(function(evt) {
@@ -31,20 +35,20 @@ function addItemToLineItems(variant) {
 
 function createComponent(variant, variant_id) {
   return `<div class="cartItem">
-    <span class="item">
-      <span class="item-left">
+    <div class="item row">
+      <div class="item-left col-10">
           <img style="width:100px" src="` + variant.image + `" alt="" />
           <span class="item-info">
               <span>` + variant.name + `</span>
               <span>`+ variant.price +`</span>
               <span> X`+ variant.count +`</span>
           </span>
-      </span>
-      <span class="item-right">
+      </div>
+      <div class="item-right col-2">
           <button onclick='deleteItem()' data-variant-id=`+ variant_id +
             ` class="deleteBtn btn btn-xs btn-danger pull-right" href="#">x</button>
-      </span>
-    </span>
+      </div>
+    </div>
   </div>`
 }
 
@@ -56,6 +60,7 @@ function deleteItem(){
 
 
 function renderLineItems(lineItems){
+  setCookie('lineItems', JSON.stringify(lineItems), 20)
   $('div .cart').empty();
   var lineItemsLayout = '';
   for (var index in lineItems ){
@@ -70,6 +75,8 @@ function renderLineItems(lineItems){
     $('div .cart').append(lineItemsLayout);
     $('.cartBtn .glyphicons').removeClass('displayNone').attr(
       "data-count", Object.keys(lineItems).length);
+    $('div .cart').append(`<a class="btn btn-primary btn-lg btn-block"
+      href="/orders/new">Purchase</a>`);
   }
 }
 //check notice display
