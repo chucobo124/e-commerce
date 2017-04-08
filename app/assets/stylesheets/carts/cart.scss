@@ -32,3 +32,15 @@
   background: 0 0;
   border: 0;
 }
+
+.cart .item{
+  display: block;
+}
+
+.cart .item .item-left{
+  display: inline-block;
+}
+
+.cart .item .item-right{
+  display: inline-block;
+}
