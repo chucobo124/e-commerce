@@ -3,6 +3,7 @@
 // Get Cookie value with name params
 //
 // params cname [string] cookie name
+// retrun string cookie value
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie).split(';');
